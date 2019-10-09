@@ -22,45 +22,29 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
         title = "favorite bands"
         searchController.searchResultsUpdater = self
         definesPresentationContext = true
+        searchController.obscuresBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
+        filteredBands = bands
+        
     }
-    
-    
     
     
     func updateSearchResults(for searchController: UISearchController) {
         filterSearchController(searchBar: searchController.searchBar)
         
-        /*guard let text = searchController.searchBar.text else { return }
-        filteredBands = bands
-        if text.isEmpty == false {
-            filteredBands = bands.filter { $0.name.contains(text)}
-        }
-        tableView.reloadData()
-        
-        print(text)*/
+
     }
     
     func filterSearchController(searchBar: UISearchBar) {
         let searchText = searchBar.text ?? ""
-        filteredBands = bands.filter { $0.name.contains(searchText)
+        
+        filteredBands = bands.filter { $0.name.lowercased().range(of: searchText, options: .caseInsensitive) != nil}
+        
+        tableView.reloadData()
+        
             
-        }
-        tableView.reloadData()
-    }
-    
-   /* func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            }
         
-        filteredBands = bands
-        
-        if searchText.isEmpty == false {
-            filteredBands = bands.filter { $0.name.contains(searchText)}
-        }
-        tableView.reloadData()
-        
-    }*/
-    
-    
     // table functions
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,12 +57,11 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Band", for: indexPath) as! BandTableViewCell
-        var band = bands[indexPath.row]
-        cell.band = band
+        cell.band = bands[indexPath.row]
         if searchController.isActive {
-            band = filteredBands[indexPath.row]
+            cell.band = filteredBands[indexPath.row]
         } else {
-            band = bands[indexPath.row]
+            cell.band = bands[indexPath.row]
         }
          
         return cell
@@ -86,9 +69,16 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let band = bands[indexPath.row]
+        if searchController.isActive {
+        let band = filteredBands[indexPath.row]
         selectedBand = band
-        performSegue(withIdentifier: "Detail", sender: nil)
+            performSegue(withIdentifier: "Detail", sender: nil) }
+        else {
+            let band = bands[indexPath.row]
+            selectedBand = band
+            performSegue(withIdentifier: "Detail", sender: nil)
+            
+        }
         
     }
     
@@ -103,4 +93,3 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
     
     
 }
-
