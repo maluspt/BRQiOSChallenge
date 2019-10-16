@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,10 +31,79 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="MO5-KN-8JI"/>
+                    <connections>
+                        <segue destination="ptd-2V-hO8" kind="show" identifier="Detail" id="RDd-pJ-B7m"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEj-oM-0DZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857.97101449275374" y="139.95535714285714"/>
+            <point key="canvasLocation" x="843" y="140"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="b1w-Wb-eEz">
+            <objects>
+                <viewController id="ptd-2V-hO8" customClass="DetailViewController" customModule="challange02" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wmx-gj-JtY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nome do filme no do filme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUV-du-uie">
+                                <rect key="frame" x="60" y="630" width="303" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="Ij3-gN-4Wg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descricao filme" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBG-X9-E0T">
+                                <rect key="frame" x="20" y="710" width="374" height="173"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qec-4L-cOy">
+                                <rect key="frame" x="0.0" y="88" width="414" height="534"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="534" id="m5l-FA-DKf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="realease" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBK-En-Q8m">
+                                <rect key="frame" x="0.0" y="697" width="414" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="G1g-Yn-lJs" firstAttribute="trailing" secondItem="EUV-du-uie" secondAttribute="trailing" constant="51" id="8D9-Ye-RFB"/>
+                            <constraint firstItem="EUV-du-uie" firstAttribute="leading" secondItem="G1g-Yn-lJs" secondAttribute="leading" constant="60" id="F1H-rU-EAQ"/>
+                            <constraint firstItem="qec-4L-cOy" firstAttribute="leading" secondItem="G1g-Yn-lJs" secondAttribute="leading" id="IRL-Nl-Mxd"/>
+                            <constraint firstItem="qec-4L-cOy" firstAttribute="centerX" secondItem="Wmx-gj-JtY" secondAttribute="centerX" id="KdB-WO-dAQ"/>
+                            <constraint firstItem="LBG-X9-E0T" firstAttribute="top" secondItem="EUV-du-uie" secondAttribute="bottom" constant="8" id="TLt-Wx-PuQ"/>
+                            <constraint firstItem="yBK-En-Q8m" firstAttribute="leading" secondItem="qec-4L-cOy" secondAttribute="leading" id="TeV-zh-hBR"/>
+                            <constraint firstItem="qec-4L-cOy" firstAttribute="top" secondItem="G1g-Yn-lJs" secondAttribute="top" id="WfJ-NH-ESa"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="LBG-X9-E0T" secondAttribute="bottom" constant="-21" id="Z4j-7R-WE2"/>
+                            <constraint firstItem="EUV-du-uie" firstAttribute="top" secondItem="qec-4L-cOy" secondAttribute="bottom" constant="8" id="ca8-q1-1Cz"/>
+                            <constraint firstItem="yBK-En-Q8m" firstAttribute="top" secondItem="qec-4L-cOy" secondAttribute="bottom" constant="75" id="fbV-2F-pum"/>
+                            <constraint firstItem="LBG-X9-E0T" firstAttribute="leading" secondItem="G1g-Yn-lJs" secondAttribute="leading" constant="20" id="oqh-ac-oN2"/>
+                            <constraint firstItem="LBG-X9-E0T" firstAttribute="centerX" secondItem="qec-4L-cOy" secondAttribute="centerX" id="r3o-q2-886"/>
+                            <constraint firstItem="yBK-En-Q8m" firstAttribute="trailing" secondItem="qec-4L-cOy" secondAttribute="trailing" id="tbb-YU-lkc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G1g-Yn-lJs"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yk8-PK-hJt"/>
+                    <connections>
+                        <outlet property="movieDescription" destination="LBG-X9-E0T" id="SZb-Gy-zgR"/>
+                        <outlet property="movieImage" destination="qec-4L-cOy" id="W00-aR-JH3"/>
+                        <outlet property="movieNameLabel" destination="EUV-du-uie" id="Kws-KY-L81"/>
+                        <outlet property="movieReleaseDate" destination="yBK-En-Q8m" id="onP-HT-aku"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rKV-b4-8eS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684.057971014493" y="139.95535714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pll-LF-kkv">

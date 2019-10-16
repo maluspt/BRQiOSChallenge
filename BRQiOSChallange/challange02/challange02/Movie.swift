@@ -8,11 +8,22 @@
 
 import Foundation
 
-struct Movie: Codable {
-    var title: String
 
+
+struct Movie: Codable {
+    
+    var title: String
+    var release_date: String
+    var overview: String
+    var poster_path: String
+    
+   
 }
 
 struct Movies: Codable {
     var results: [Movie]
 }
+
+
+
+

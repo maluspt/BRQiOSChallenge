@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UITableViewController, UISearchResultsUpdating {
     var movies = [Movie]()
     let searchController = UISearchController(searchResultsController: nil)
-    let key = "c3727820"
+    var selectedMovie: Movie?
+    
     
     
     override func viewDidLoad() {
@@ -42,11 +43,15 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
     
     func parse(json: Data) {
         let decoder = JSONDecoder()
-        if let jsonMovies = try? decoder.decode(Movies.self, from: json) {
-            movies = jsonMovies.results
-            tableView.reloadData()
+        DispatchQueue.global().async {
+            if let jsonMovies = try? decoder.decode(Movies.self, from: json) {
+            self.movies = jsonMovies.results
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
+}
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,6 +63,20 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
         let movie = movies[indexPath.row]
         cell.textLabel?.text = movie.title
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
+        selectedMovie = movie
+        performSegue(withIdentifier: "Detail", sender: nil)
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Detail" {
+            let movieDetail = segue.destination as! DetailViewController
+            movieDetail.movie = selectedMovie        }
     }
     
     
